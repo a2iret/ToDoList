@@ -38,8 +38,12 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.print("\nВведите идентификатор задачи для редоктирование: ");
-                    toDoListService.completeTask(scan.nextInt());
+                    System.out.print("\nВведите идентификатор задачи если вы выполнили задание: ");
+                    System.out.println(toDoListService.completeTask(scan.nextInt()));
+                    break;
+                case 6:
+                    System.out.println("Список задач:");
+                    toDoListService.showAllNotes();
                     break;
                 default:
                     System.out.println("\nВведите правильное значение!\n");

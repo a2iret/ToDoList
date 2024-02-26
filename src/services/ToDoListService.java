@@ -56,7 +56,6 @@ public class ToDoListService {
                 toDoList.setId(res.getInt("id"));
                 toDoList.setStatus(ToDoListStatus.valueOf(res.getString("status")));
                 toDoList.setDescription(res.getString("description"));
-                getAll.add(toDoList);
             }return getAll;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -64,13 +63,36 @@ public class ToDoListService {
 
     }
 
+    public String  showAllNotes(){
+        try {
+            Statement st = connection.createStatement();
+            ResultSet res = st.executeQuery("SELECT id, description, "
+                    + "CASE WHEN status = 'DONE' THEN '[выполнено]'"
+                    + " WHEN status = 'IN_PROCESS' THEN '[не выполнено]' END AS status"
+                    + " FROM toDoList");
+            while (res.next()){
+                int id = res.getInt("id");
+                String description = res.getString("description");
+                String status = res.getString("status");
+                if (status == null)
+                    continue;
+                System.out.println("id: " + id + " "+ status+""+description);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     public String completeTask(int id){
         try {
             Statement st = connection.createStatement();
             st.execute("UPDATE toDoList SET status ='"+ToDoListStatus.DONE.name()+"' WHERE id = '"+id+"'");
-            return "\nМолодец!Ты выполнил(-а) задание! под идентификатором" + id + "\n";
+            return "\nМолодец!Ты выполнил(-а) задание! под идентификатором: " + id + "\n";
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } return "Oшибка!";
+        }return "Ошибка!";
     }
 }
