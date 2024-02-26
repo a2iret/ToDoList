@@ -46,7 +46,7 @@ public class ToDoListService {
     }
 
     public ArrayList<ToDoList> showAll(){
-        // я не смог как сделать с запросом CASE. sorry(
+        // я не смог сделать с запросом CASE. sorry(
         try {
             Statement st = connection.createStatement();
             ArrayList<ToDoList> getAll = new ArrayList<>();
