@@ -32,9 +32,4 @@ public class ToDoList {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        String status = getStatus().equals(ToDoListStatus.DONE)?"Выполнено":"Не выполнено";
-        return "id: " + getId() + " - ["+ status +"]"+getDescription();
-    }
 }

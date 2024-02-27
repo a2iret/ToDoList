@@ -31,19 +31,12 @@ public class Main {
                     System.out.println(toDoListService.deleteToDoList(scan.nextInt()));
                     break;
                 case 4:
-                    ArrayList<ToDoList> showAll = toDoListService.showAll();
                     System.out.println("Список задач:");
-                    for (int i = 0; i < showAll.size(); i++){
-                        System.out.println(showAll.get(i));
-                    }
+                    toDoListService.showAllNotes();
                     break;
                 case 5:
                     System.out.print("\nВведите идентификатор задачи если вы выполнили задание: ");
                     System.out.println(toDoListService.completeTask(scan.nextInt()));
-                    break;
-                case 6:
-                    System.out.println("Список задач:");
-                    toDoListService.showAllNotes();
                     break;
                 default:
                     System.out.println("\nВведите правильное значение!\n");

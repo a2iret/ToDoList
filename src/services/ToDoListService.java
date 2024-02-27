@@ -45,24 +45,6 @@ public class ToDoListService {
         }return "Ошибка!";
     }
 
-    public ArrayList<ToDoList> showAll(){
-        // я не смог сделать с запросом CASE. sorry(
-        try {
-            Statement st = connection.createStatement();
-            ArrayList<ToDoList> getAll = new ArrayList<>();
-            ResultSet res = st.executeQuery("SELECT * FROM toDoList");
-            while (res.next()){
-                ToDoList toDoList = new ToDoList();
-                toDoList.setId(res.getInt("id"));
-                toDoList.setStatus(ToDoListStatus.valueOf(res.getString("status")));
-                toDoList.setDescription(res.getString("description"));
-            }return getAll;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }return null;
-
-    }
-
     public String  showAllNotes(){
         try {
             Statement st = connection.createStatement();
